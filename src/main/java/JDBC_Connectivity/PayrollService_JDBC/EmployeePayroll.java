@@ -11,7 +11,8 @@ public class EmployeePayroll
 		
 		public static void main(String[] args) throws ClassNotFoundException, SQLException {
 			
-			System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data");
+			System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data"
+							+ "\nPress 3 to Update data");
 			int choice = s.nextInt();
 			
 			switch(choice) {
@@ -20,7 +21,10 @@ public class EmployeePayroll
 				  break;
 			case 2:
 				  reteriveData();
-				  break;	
+				  break;
+			case 3:
+				  UpdateData();
+				  break;	  
 			}
 					
 		}
@@ -40,7 +44,20 @@ public class EmployeePayroll
 			details.setLastName(s.next());
 			
 			EmployeeRepo repo = new EmployeeRepo();
-			repo.insertRecord(details);
+			repo.insertRecord(details);				
+		}
+		
+		private static void UpdateData() throws SQLException {
+			
+			System.out.println("Enter Id");
+		    int id = s.nextInt();
+			
+			System.out.println("Enter BasicPay");
+			float basicPay = s.nextFloat();
+			
+			EmployeeRepo repo = new EmployeeRepo();
+			repo.updatedata(id, basicPay);
 				
 		}
+
 }

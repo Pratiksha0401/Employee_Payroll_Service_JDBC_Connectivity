@@ -50,7 +50,7 @@ public class EmployeeRepo {
 		List<Employee> details=new ArrayList<>();
 		
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement prestatement = null;
 		try {
 		//Step1: Load & Register Driver Class
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
@@ -58,12 +58,12 @@ public class EmployeeRepo {
 		//Step2: Establish a MySql Connection
 		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "root");
 		
-		//Step3: Create Statement
-		 statement = connection.createStatement();
+		//Step3: Create Statement		
+		String query =" select * from employee_payroll ";
+		prestatement = connection.prepareStatement(query);
 		
 		//Step4: Execute Query
-		String query =" select * from employee_payroll";
-		ResultSet resultset = statement.executeQuery(query);
+		ResultSet resultset = prestatement.executeQuery();
 	
 		while(resultset.next()) {
 			Employee info = new Employee();
@@ -89,9 +89,9 @@ public class EmployeeRepo {
 		}finally {
 			
 			if(connection != null) {
-			statement.close();
+			prestatement.close();
 			}
-			if(statement != null) {
+			if(prestatement != null) {
 			connection.close();
 			}
 		}

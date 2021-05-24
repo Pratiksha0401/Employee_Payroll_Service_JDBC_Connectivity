@@ -16,7 +16,7 @@ public class Employee {
 		return Id;
 	}
 	public void setId(int id) {
-		Id = id;
+		this.Id = id;
 	}
 	public String getFirstName() {
 		return firstName;

@@ -7,15 +7,17 @@ import java.util.Scanner;
 public class EmployeePayroll 
 {
   
-	 static final Scanner s = new Scanner(System.in);
+	static final Scanner s = new Scanner(System.in);
 		
-		public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 			
-			System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data"
+		System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data"
 							+ "\nPress 3 to Update data");
-			int choice = s.nextInt();
-			
+		int choice = s.nextInt();
+				
 			switch(choice) {
+			case 0:
+				System.exit(0);
 			case 1:
 				  insertData();
 				  break;
@@ -24,10 +26,10 @@ public class EmployeePayroll
 				  break;
 			case 3:
 				  UpdateData();
-				  break;	  
+				  break;
 			}
-					
-		}
+				
+	}
 
 		private static void reteriveData() throws SQLException {
 			EmployeeRepo repo = new EmployeeRepo();

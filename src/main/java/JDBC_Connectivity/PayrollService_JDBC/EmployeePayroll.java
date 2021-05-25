@@ -12,21 +12,22 @@ public class EmployeePayroll
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 			
 		System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data"
-							+ "\nPress 3 to Update data");
+							+ "\nPress 3 to Update data\nPress 4 to Retrive Data ParticularDateRange");
 		int choice = s.nextInt();
 				
 			switch(choice) {
-			case 0:
-				System.exit(0);
-			case 1:
-				  insertData();
-				  break;
-			case 2:
-				  reteriveData();
-				  break;
-			case 3:
-				  UpdateData();
-				  break;
+				case 1:
+					  insertData();
+					  break;
+				case 2:
+					  reteriveData();
+					  break;
+				case 3:
+					  UpdateData();
+					  break;
+				case 4:
+					ReteriveDataForParticularDateRange();
+					break;
 			}
 				
 	}
@@ -58,8 +59,13 @@ public class EmployeePayroll
 			float basicPay = s.nextFloat();
 			
 			EmployeeRepo repo = new EmployeeRepo();
-			repo.updatedata(id, basicPay);
-				
+			repo.updatedata(id, basicPay);				
+		}
+		
+		private static void ReteriveDataForParticularDateRange() throws SQLException {
+			EmployeeRepo repo = new EmployeeRepo();
+			List<Employee> details = repo.findAllForParticularDateRange();
+			details.forEach(System.out::println);
 		}
 
 }

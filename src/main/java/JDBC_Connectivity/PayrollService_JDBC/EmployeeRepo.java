@@ -1,6 +1,7 @@
 package JDBC_Connectivity.PayrollService_JDBC;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,6 +81,9 @@ public class EmployeeRepo {
 			float pay =resultset.getFloat(4);
 			info.setBasicPay(pay);
 			
+			Date start=resultset.getDate(9);
+			info.setStart_Date(start);
+			
 			details.add(info);
 		}
 		}catch (SQLException e) {
@@ -126,4 +130,56 @@ public class EmployeeRepo {
 			}
 		}
 	}
+	
+	public List<Employee> findAllForParticularDateRange() throws SQLException {
+		
+		List<Employee> details=new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement prepstatement = null;
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
+			
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "root");
+			
+			String query ="Select * from employee_payroll where Start_Date between Cast('2020-03-10' as date) and date(now()); ";
+			prepstatement = connection.prepareStatement(query);
+			
+			ResultSet resultset = prepstatement.executeQuery();
+			
+			while(resultset.next()) {
+				Employee info = new Employee();
+				
+				int id=resultset.getInt(1);
+				info.setId(id);
+				
+				String name = resultset.getString(2);
+				info.setFirstName(name);
+				
+				String lastname = resultset.getString(3);
+				info.setLastName(lastname);
+				
+				float pay =resultset.getFloat(4);
+				info.setBasicPay(pay);
+				
+				Date start=resultset.getDate(9);
+				info.setStart_Date(start);
+				
+				details.add(info);
+			}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(connection != null) {
+					connection.close();
+				}
+				if(prepstatement != null) {
+				   prepstatement.close();
+				}
+			}
+			return details;
+		
+	}
+
 }

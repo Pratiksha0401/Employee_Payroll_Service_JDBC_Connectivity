@@ -178,8 +178,40 @@ public class EmployeeRepo {
 				   prepstatement.close();
 				}
 			}
-			return details;
-		
+			return details;		
 	}
-
+	
+	
+	public void usedatabaseFunction() throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement prepstatement = null;
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "root");
+			
+			String query1="select sum(basic_pay),gender from employee_payroll emp1 , employee_details emp2 where"
+					+ "  emp1.id=emp2.EmployeeID or gender='F' group by gender" ;
+			prepstatement=connection.prepareStatement(query1);
+			ResultSet result1 = prepstatement.executeQuery();
+			result1.next();
+			String gender=result1.getString(2);
+			String sum1 = result1.getString(1);
+			System.out.println(gender +" Gender having Sum of BasicPay of Employees: "+sum1);			
+			
+			
+		}catch (SQLException e) {
+	        e.printStackTrace();
+        }catch (Exception e) {
+	        e.printStackTrace();
+        }finally {
+	         if(connection != null) {
+		        connection.close();
+	         } 
+	         if(prepstatement != null) {
+	            prepstatement.close();
+	         }
+         }
+	}
+	
 }

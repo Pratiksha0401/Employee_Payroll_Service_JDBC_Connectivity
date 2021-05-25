@@ -12,7 +12,8 @@ public class EmployeePayroll
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 			
 		System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data"
-							+ "\nPress 3 to Update data\nPress 4 to Retrive Data ParticularDateRange");
+							+ "\nPress 3 to Update data\nPress 4 to Retrive Data ParticularDateRange"
+							+ "\nPress 5 to get Sum");
 		int choice = s.nextInt();
 				
 			switch(choice) {
@@ -28,9 +29,12 @@ public class EmployeePayroll
 				case 4:
 					ReteriveDataForParticularDateRange();
 					break;
+				case 5:
+					  ApplyDatabaseFunction();
+					  break;					 
+				}	
 			}
 				
-	}
 
 		private static void reteriveData() throws SQLException {
 			EmployeeRepo repo = new EmployeeRepo();
@@ -67,5 +71,11 @@ public class EmployeePayroll
 			List<Employee> details = repo.findAllForParticularDateRange();
 			details.forEach(System.out::println);
 		}
+		
+		private static void ApplyDatabaseFunction() throws SQLException {			
+			EmployeeRepo repo = new EmployeeRepo();
+			repo.usedatabaseFunction();			
+		}
+
 
 }

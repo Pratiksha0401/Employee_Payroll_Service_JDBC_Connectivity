@@ -7,12 +7,12 @@ public class Employee {
 	public String firstName;
 	public String lastName;
 	public float basicPay;
-	public Date Start_Date;
+	public String Start_Date;
 	
-	public Date getStart_Date() {
+	public String getStart_Date() {
 		return Start_Date;
 	}
-	public void setStart_Date(Date start_Date) {
+	public void setStart_Date(String start_Date) {
 		this.Start_Date = start_Date;
 	}
 	public float getBasicPay() {

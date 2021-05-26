@@ -8,6 +8,10 @@
 *.nar
 hs_err_pid*
 *.bak.java
+/target/
+*/target/**
+**/META-INF/
+!.mvn/wrapper/maven-wrapper.jar
 
 
 ## Eclipse

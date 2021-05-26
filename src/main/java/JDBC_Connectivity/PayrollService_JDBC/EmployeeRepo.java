@@ -12,6 +12,18 @@ import java.util.List;
 
 public class EmployeeRepo {
 	
+	private List<Employee> empList;
+
+
+	public EmployeeRepo(List<Employee> empList) {
+		this();
+		this.empList=empList;
+	}
+
+	public EmployeeRepo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void insertRecord(Employee details) throws ClassNotFoundException, SQLException {
 		Connection connection = null;
 		Statement statement = null;
@@ -341,5 +353,9 @@ public void alterTable_EmployeePayroll() throws SQLException {
 	         }
          }
 	}
+
+	public long countEntries() {
+		return empList.size();
+	} 
 
 }

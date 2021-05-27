@@ -7,8 +7,20 @@ public class Employee {
 	public String firstName;
 	public String lastName;
 	public float basicPay;
-	public String Start_Date;
+	public String Start_Date;	
 	
+	public Employee(int id, String firstName, String lastName, float basicPay) {
+		this.Id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.basicPay = basicPay;
+		
+	}
+
+	public Employee() {
+		
+	}
+
 	public String getStart_Date() {
 		return Start_Date;
 	}

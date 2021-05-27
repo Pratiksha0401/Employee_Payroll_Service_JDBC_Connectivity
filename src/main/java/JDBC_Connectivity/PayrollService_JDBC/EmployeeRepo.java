@@ -16,8 +16,7 @@ public class EmployeeRepo {
 
 
 	public EmployeeRepo(List<Employee> empList) {
-		this();
-		this.empList=empList;
+		this.empList=new ArrayList<>(empList);
 	}
 
 	public EmployeeRepo() {
@@ -356,6 +355,13 @@ public void alterTable_EmployeePayroll() throws SQLException {
 
 	public long countEntries() {
 		return empList.size();
-	} 
+	}
+
+	public void addEmployeeToPayroll(Employee employee) {
+		empList.add(employee);
+		
+	}
+
+	 
 
 }

@@ -96,7 +96,7 @@ public class EmployeePayrollService {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "root");
 			
-			String query = "Delete from employee_payroll where Id =14";
+			String query = "Delete from employee_payroll where Id =15";
 			
 			prepstatement = connection.prepareStatement(query);
 			prepstatement.executeUpdate();

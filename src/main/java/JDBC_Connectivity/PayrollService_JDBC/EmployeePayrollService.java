@@ -37,9 +37,9 @@ public class EmployeePayrollService {
 			e.printStackTrace();
 			try {
 				connection.rollback();
-				System.out.println("JDBC Transaction rolled back successfully");
+				System.out.println("JDBC Transaction Rolled back successfully");
 			} catch (SQLException e1) {
-				System.out.println("SQLException in rollback"+e.getMessage());
+				System.out.println("SQLException in Rollback"+e.getMessage());
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -65,7 +65,7 @@ public class EmployeePayrollService {
 		
 		stmt.executeUpdate();
 
-		System.out.println("Payroll Data inserted successfully for ID=" + ID);
+		System.out.println("Payroll Data inserted successfully for ID = " + ID);
 		stmt.close();
 		
 	}

@@ -100,7 +100,7 @@ public class EmployeePayrollService {
 			
 			prepstatement = connection.prepareStatement(query);
 			prepstatement.executeUpdate();
-			System.out.println(" Record deleted!");
+			System.out.println(" Record Deleted!");
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}catch (Exception e) {

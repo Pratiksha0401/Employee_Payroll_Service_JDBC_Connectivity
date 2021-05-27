@@ -92,6 +92,18 @@ public class EmployeeRepo {
 			float pay =resultset.getFloat(4);
 			info.setBasicPay(pay);
 			
+			float dpay =resultset.getFloat(5);
+			info.setBasicPay(dpay);
+			
+			float tpay =resultset.getFloat(6);
+			info.setBasicPay(tpay);
+			
+			float tax =resultset.getFloat(7);
+			info.setBasicPay(tax);
+			
+			float netpay =resultset.getFloat(8);
+			info.setBasicPay(netpay);
+			
 			String start=resultset.getString(9);
 			info.setStart_Date(start);
 			
@@ -201,6 +213,18 @@ public class EmployeeRepo {
 				
 				float pay =resultset1.getFloat(4);
 				info.setBasicPay(pay);
+				
+				float dpay =resultset1.getFloat(5);
+				info.setBasicPay(dpay);
+				
+				float tpay =resultset1.getFloat(6);
+				info.setBasicPay(tpay);
+				
+				float tax =resultset1.getFloat(7);
+				info.setBasicPay(tax);
+				
+				float netpay =resultset1.getFloat(8);
+				info.setBasicPay(netpay);
 				
 				String start=resultset1.getString(9);
 				info.setStart_Date(start);
@@ -332,12 +356,12 @@ public void alterTable_EmployeePayroll() throws SQLException {
 //			System.out.println(result3+" Column Tax is added successfully!");		
 //			
 			
-			//adding Net_Pay  columns from basic_pay and Tax
-			String query4="alter table employee_payroll_service.employee_payroll add Net_Pay float AS (basic_pay - Tax ) after Tax" ;
-			statement=connection.createStatement();
-			int result4 = statement.executeUpdate(query4);
-			System.out.println(result4+" Column Net_Pay is added successfully!");		
-			
+//			//adding Net_Pay  columns from basic_pay and Tax
+//			String query4="alter table employee_payroll_service.employee_payroll add Net_Pay float AS (basic_pay - Tax ) after Tax" ;
+//			statement=connection.createStatement();
+//			int result4 = statement.executeUpdate(query4);
+//			System.out.println(result4+" Column Net_Pay is added successfully!");		
+//			
 			
 		}catch (SQLException e) {
 	        e.printStackTrace();

@@ -27,8 +27,8 @@ public class EmployeePayrollService {
 			connection.setAutoCommit(false);
 			
 			//adding new employee details using transaction
-			insertEmployeeDetail(connection,15,"Mayuri","F","132546","Bhandara");
-			insertPayrollData(connection,15,"Mayuri","Makade",40000);
+			insertEmployeeDetail(connection,4,"Mayuri","F","132546","Bhandara");
+			insertPayrollData(connection,4,"Mayuri","Makade",40000);
 			
 			//now commit transaction
 			connection.commit();

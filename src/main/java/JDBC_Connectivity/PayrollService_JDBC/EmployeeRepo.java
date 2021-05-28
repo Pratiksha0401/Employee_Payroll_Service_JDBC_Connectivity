@@ -386,6 +386,19 @@ public void alterTable_EmployeePayroll() throws SQLException {
 		
 	}
 
-	 
+	public void addEmployeeToPayroll(List<Employee> asList) {
+		empList.forEach(employeeData ->
+		{
+			this.addEmployeeToPayroll(employeeData.getFirstName(), employeeData.getLastName(), employeeData.getBasicPay(), employeeData.getStart_Date());
+		});
+		
+	}
+
+	private void addEmployeeToPayroll(String firstName, String lastName, float basicPay, String start_Date) {
+		
+		
+	}
+
+		 
 
 }

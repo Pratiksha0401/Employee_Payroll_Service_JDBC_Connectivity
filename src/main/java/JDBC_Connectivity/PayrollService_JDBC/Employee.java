@@ -9,17 +9,17 @@ public class Employee {
 	public float basicPay;
 	public String Start_Date;	
 	
-	public Employee(int id, String firstName, String lastName, float basicPay) {
-		this.Id = id;
+	public Employee( int id ,String firstName, String lastName, float basicPay) {	
+		this.Id=id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.basicPay = basicPay;
-		
 	}
 
 	public Employee() {
 		
 	}
+
 
 	public String getStart_Date() {
 		return Start_Date;

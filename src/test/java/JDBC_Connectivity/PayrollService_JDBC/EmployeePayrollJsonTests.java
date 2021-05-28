@@ -34,15 +34,15 @@ public class EmployeePayrollJsonTests {
 		return arrayOfEmps;
 	}
 	
-	@Test
-	public void givenemployeeDataInJSONServer_WhenRetrieved_ShouldMatchTheCount()
-	{
-		Employee[] arrayOfEmps = getEmployeeList();
-		EmployeeRepo employeeRepo;
-		employeeRepo = new EmployeeRepo(Arrays.asList(arrayOfEmps));
-		long entries = employeeRepo.countEntries();
-		Assert.assertEquals(3, entries);
-	}
+//	@Test
+//	public void givenemployeeDataInJSONServer_WhenRetrieved_ShouldMatchTheCount()
+//	{
+//		Employee[] arrayOfEmps = getEmployeeList();
+//		EmployeeRepo employeeRepo;
+//		employeeRepo = new EmployeeRepo(Arrays.asList(arrayOfEmps));
+//		long entries = employeeRepo.countEntries();
+//		Assert.assertEquals(3, entries);
+//	}
 	
 	private Response addEmployeeToJSONServer(Employee employee) {
 		String empJson = new Gson().toJson(employee);
@@ -52,22 +52,47 @@ public class EmployeePayrollJsonTests {
 		return request.post("/employee");
 	}
 	
+//	@Test
+//	public void givenNewEmployee_whenAdded_ShouldMatch201ResponseAndCount()
+//	{
+//		Employee[] arrayOfEmps = getEmployeeList();
+//		EmployeeRepo employeeRepo;
+//		employeeRepo = new EmployeeRepo(Arrays.asList(arrayOfEmps));
+//		Employee employee = null;
+//		employee = new Employee(0, "Gill", "Thomas", 200000);
+//		
+//		Response response = addEmployeeToJSONServer(employee);
+//		int statusCode = response.getStatusCode();
+//		Assert.assertEquals(201, statusCode);
+//	
+//		employee = new Gson().fromJson(response.asString(), Employee.class);
+//		employeeRepo.addEmployeeToPayroll(employee);
+//		long entries = employeeRepo.countEntries();
+//		Assert.assertEquals(3, entries);
+//	}
+	
 	@Test
-	public void givenNewEmployee_whenAdded_ShouldMatch201ResponseAndCount()
+	public void givenListOfNewEmployee_WhenAdded_ShouldMatch201ResponseAndCount()
 	{
 		Employee[] arrayOfEmps = getEmployeeList();
 		EmployeeRepo employeeRepo;
 		employeeRepo = new EmployeeRepo(Arrays.asList(arrayOfEmps));
-		Employee employee = null;
-		employee = new Employee(0, "Gill", "Thomas", 200000);
 		
-		Response response = addEmployeeToJSONServer(employee);
-		int statusCode = response.getStatusCode();
-		Assert.assertEquals(201, statusCode);
-	
-		employee = new Gson().fromJson(response.asString(), Employee.class);
-		employeeRepo.addEmployeeToPayroll(employee);
+		Employee[] arrayOfEmpPayrolls = {
+			new Employee( 0,"Mark","Smith", 600000),
+			new Employee(0, "Gary","Lu", 1000000),
+			new Employee(0, "Sam", "Pichai", 200000)
+		};
+		for(Employee employeePayroll : arrayOfEmpPayrolls)
+		{
+			Response response = addEmployeeToJSONServer(employeePayroll);
+			int statusCode = response.getStatusCode();
+			Assert.assertEquals(201, statusCode);
+			
+			employeePayroll = new Gson().fromJson(response.asString(), Employee.class);
+			employeeRepo.addEmployeeToPayroll(employeePayroll);
+		}
 		long entries = employeeRepo.countEntries();
-		Assert.assertEquals(3, entries);
+		Assert.assertEquals(8, entries);
 	}
 }

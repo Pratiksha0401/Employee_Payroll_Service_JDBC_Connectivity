@@ -3,6 +3,7 @@ package JDBC_Connectivity.PayrollService_JDBC;
 
 import static io.restassured.RestAssured.*;
 import org.json.simple.JSONObject;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import io.restassured.http.ContentType;
 import java.util.Arrays;
@@ -93,7 +94,38 @@ public class EmployeePayrollJsonRestAssuredTests {
 		Assert.assertEquals(8, entries);
 	}
 	
-	@Test
+	@DataProvider(name = "dataforpost")
+	public Object[][] dataforPost() {
+		return new Object[][] {
+			{"Nia", "Sharma",75000},
+			{"Rohan", "ri",85000}
+		};	
+	}
+	
+	//@Test(dataProvider = "dataforpost")
+	public void givenMultipleRecords_shouldReturn_201statusCode(String firstName, String lastName, int basicPay) {
+		JSONObject request = new JSONObject();
+		
+		request.put("firstName", firstName);
+		request.put("lastName",  lastName);
+		request.put("BasicPay", basicPay);
+		
+		baseURI ="http://localhost";
+		port = 4000;
+		
+		given().
+		       contentType(ContentType.JSON).
+		       accept(ContentType.JSON).
+		       header("Content-Type", "application/json").
+		       body(request.toJSONString()).
+		when().
+		      post("/employee").
+		then().
+		      statusCode(201).
+		      log().all();
+	}
+	
+	//@Test
 	public void updateExistingRecord_shouldReturn_200statusCode() {
 		JSONObject request = new JSONObject();
 		request.put("basicPay", 50000 );
@@ -110,5 +142,21 @@ public class EmployeePayrollJsonRestAssuredTests {
 		       statusCode(200).
 		       log().all();
 	}
+	
+	
+	
+
+	@Test
+	public void deleteMultipleDatafromExistingRecord_shouldReturn_200statusCode() {
+		baseURI ="http://localhost";
+		port = 4000;
+		
+		when().
+		       delete("/employee/6").
+		then().
+		       statusCode(200).
+		       log().all();
+		
+	}	
 	
 }

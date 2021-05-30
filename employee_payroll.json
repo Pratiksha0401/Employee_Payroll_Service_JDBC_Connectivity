@@ -17,8 +17,20 @@
       "Id": 0,
       "firstName": "Gill",
       "lastName": "Gates",
-      "basicPay": 200000,
+      "basicPay": 50000,
       "id": 3
+    },
+    {
+      "firstName": "Riya",
+      "lastName": "Kokate",
+      "BasicPay": 66000,
+      "id": 4
+    },
+    {
+      "firstName": "Nia",
+      "lastName": "Sharma",
+      "BasicPay": 75000,
+      "id": 5
     }
   ]
 }

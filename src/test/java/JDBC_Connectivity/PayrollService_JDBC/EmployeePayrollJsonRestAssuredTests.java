@@ -3,12 +3,12 @@ package JDBC_Connectivity.PayrollService_JDBC;
 
 import static io.restassured.RestAssured.*;
 import org.json.simple.JSONObject;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 import io.restassured.http.ContentType;
 import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
+
 import com.google.gson.Gson;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -32,7 +32,7 @@ public class EmployeePayrollJsonRestAssuredTests {
 		return arrayOfEmps;
 	}
 	
-	//@Test
+	@Test
 	public void givenemployeeDataInJSONServer_WhenRetrieved_ShouldMatchTheCount()
 	{
 		Employee[] arrayOfEmps = getEmployeeList();
@@ -94,36 +94,6 @@ public class EmployeePayrollJsonRestAssuredTests {
 		Assert.assertEquals(8, entries);
 	}
 	
-	@DataProvider(name = "dataforpost")
-	public Object[][] dataforPost() {
-		return new Object[][] {
-			{"Nia", "Sharma",75000},
-			{"Rohan", "ri",85000}
-		};	
-	}
-	
-	//@Test(dataProvider = "dataforpost")
-	public void givenMultipleRecords_shouldReturn_201statusCode(String firstName, String lastName, int basicPay) {
-		JSONObject request = new JSONObject();
-		
-		request.put("firstName", firstName);
-		request.put("lastName",  lastName);
-		request.put("BasicPay", basicPay);
-		
-		baseURI ="http://localhost";
-		port = 4000;
-		
-		given().
-		       contentType(ContentType.JSON).
-		       accept(ContentType.JSON).
-		       header("Content-Type", "application/json").
-		       body(request.toJSONString()).
-		when().
-		      post("/employee").
-		then().
-		      statusCode(201).
-		      log().all();
-	}
 	
 	//@Test
 	public void updateExistingRecord_shouldReturn_200statusCode() {
@@ -143,9 +113,6 @@ public class EmployeePayrollJsonRestAssuredTests {
 		       log().all();
 	}
 	
-	
-	
-
 	@Test
 	public void deleteMultipleDatafromExistingRecord_shouldReturn_200statusCode() {
 		baseURI ="http://localhost";

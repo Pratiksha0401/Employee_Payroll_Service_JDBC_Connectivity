@@ -14,6 +14,6 @@ public class EmployeePayrollTests {
 	public void givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount() throws SQLException {
 		EmployeeRepo repo = new EmployeeRepo(); 
 		List<Employee> empData = repo.findAll();
-		Assert.assertEquals(4, empData.size());
+		Assert.assertEquals(7, empData.size());
 	}
 }

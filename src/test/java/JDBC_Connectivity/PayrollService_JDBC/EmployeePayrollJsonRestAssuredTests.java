@@ -1,18 +1,14 @@
 package JDBC_Connectivity.PayrollService_JDBC;
 
-import static org.junit.Assert.*;
 
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-
+import static io.restassured.RestAssured.*;
 import org.json.simple.JSONObject;
+import org.testng.annotations.Test;
+import io.restassured.http.ContentType;
+import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
-
 import com.google.gson.Gson;
-
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -35,14 +31,14 @@ public class EmployeePayrollJsonRestAssuredTests {
 		return arrayOfEmps;
 	}
 	
-	@Test
+	//@Test
 	public void givenemployeeDataInJSONServer_WhenRetrieved_ShouldMatchTheCount()
 	{
 		Employee[] arrayOfEmps = getEmployeeList();
 		EmployeeRepo employeeRepo;
 		employeeRepo = new EmployeeRepo(Arrays.asList(arrayOfEmps));
 		long entries = employeeRepo.countEntries();
-		Assert.assertEquals(3, entries);
+		Assert.assertEquals(7, entries);
 	}
 	
 	private Response addEmployeeToJSONServer(Employee employee) {
@@ -53,7 +49,7 @@ public class EmployeePayrollJsonRestAssuredTests {
 		return request.post("/employee");
 	}
 	
-	@Test
+	//@Test
 	public void givenNewEmployee_whenAdded_ShouldMatch201ResponseAndCount()
 	{
 		Employee[] arrayOfEmps = getEmployeeList();
@@ -72,7 +68,7 @@ public class EmployeePayrollJsonRestAssuredTests {
 		Assert.assertEquals(3, entries);
 	}
 	
-	@Test
+	//@Test
 	public void givenListOfNewEmployee_WhenAdded_ShouldMatch201ResponseAndCount()
 	{
 		Employee[] arrayOfEmps = getEmployeeList();
@@ -97,5 +93,22 @@ public class EmployeePayrollJsonRestAssuredTests {
 		Assert.assertEquals(8, entries);
 	}
 	
-
+	@Test
+	public void updateExistingRecord_shouldReturn_200statusCode() {
+		JSONObject request = new JSONObject();
+		request.put("basicPay", 50000 );
+		baseURI ="http://localhost";
+		port = 4000;
+		given().
+		       contentType(ContentType.JSON).
+		       accept(ContentType.JSON).
+		       header("Content-Type", "application/json").
+		       body(request.toJSONString()).
+		       when().
+		       patch("/employee/3").
+		       then().
+		       statusCode(200).
+		       log().all();
+	}
+	
 }

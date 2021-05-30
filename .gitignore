@@ -8,8 +8,6 @@
 *.nar
 hs_err_pid*
 *.bak.java
-/target/
-*/target/**
 **/META-INF/
 !.mvn/wrapper/maven-wrapper.jar
 target
@@ -18,6 +16,12 @@ test-output-tests
 testng.iml
 z_build
 .DS_Store
+HELP.md
+test-output/
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
 
 ## Eclipse
 ##############################

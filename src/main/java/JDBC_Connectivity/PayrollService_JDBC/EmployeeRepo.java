@@ -92,18 +92,6 @@ public class EmployeeRepo {
 			float pay =resultset.getFloat(4);
 			info.setBasicPay(pay);
 			
-			float dpay =resultset.getFloat(5);
-			info.setBasicPay(dpay);
-			
-			float tpay =resultset.getFloat(6);
-			info.setBasicPay(tpay);
-			
-			float tax =resultset.getFloat(7);
-			info.setBasicPay(tax);
-			
-			float netpay =resultset.getFloat(8);
-			info.setBasicPay(netpay);
-			
 			String start=resultset.getString(9);
 			info.setStart_Date(start);
 			
@@ -153,6 +141,7 @@ public class EmployeeRepo {
 			}
 		}
 	}
+	
 	
 	
 	public void deletedata(int id , String firstName) throws SQLException {
@@ -213,18 +202,6 @@ public class EmployeeRepo {
 				
 				float pay =resultset1.getFloat(4);
 				info.setBasicPay(pay);
-				
-				float dpay =resultset1.getFloat(5);
-				info.setBasicPay(dpay);
-				
-				float tpay =resultset1.getFloat(6);
-				info.setBasicPay(tpay);
-				
-				float tax =resultset1.getFloat(7);
-				info.setBasicPay(tax);
-				
-				float netpay =resultset1.getFloat(8);
-				info.setBasicPay(netpay);
 				
 				String start=resultset1.getString(9);
 				info.setStart_Date(start);
@@ -395,10 +372,26 @@ public void alterTable_EmployeePayroll() throws SQLException {
 	}
 
 	private void addEmployeeToPayroll(String firstName, String lastName, float basicPay, String start_Date) {
-		
+		// TODO Auto-generated method stub
 		
 	}
 
-		 
+	public Employee getEmployeePayrollData(String name) 
+	{
+		return this.empList.stream()
+					.filter(employeePayrollDataItem -> employeePayrollDataItem.getFirstName().equals(name))
+					.findFirst()
+					.orElse(null);
+	}
+
+	public void updateEmployeeSalary(String name, float basic_pay) 
+	{
+//		
+		Employee emp = this.getEmployeePayrollData(name);
+		//EmployeePayroll emp = new EmployeePayroll();
+		if(emp != null) 
+			emp.setBasicPay(basic_pay);
+	}
+	 
 
 }

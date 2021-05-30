@@ -1,6 +1,4 @@
-package JDBC_Connectivity.PayrollService_JDBC;
-
-import java.sql.Date;
+package JDBC_Connectivity.PayrollService_MultiThread;
 
 public class Employee {
 	public int Id;
@@ -10,7 +8,6 @@ public class Employee {
 	public String Start_Date;	
 	
 	public Employee( String firstName, String lastName, float basicPay) {	
-		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.basicPay = basicPay;
@@ -56,7 +53,5 @@ public class Employee {
 		return "Employee [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", basicPay=" + basicPay
 				+ ", Start_Date=" + Start_Date + "]";
 	}
-	
-	
 	
 }
